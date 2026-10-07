@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootraceroute-bin
+_pkgname=ootraceroute
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Traces packet hops across networks with AS number lookups and latency maps."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootraceroute"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootraceroute')
+conflicts=('ootraceroute')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootraceroute-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootraceroute-linux-x86_64" "${pkgdir}/usr/bin/ootraceroute"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootraceroute-uninstall"
+}
